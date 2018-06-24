@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}geo point dual form{% endblock %}
+
+{% block body %}
+    <h1>geo point dual form</h1>
+
+    <div class="form-group form-control">
+        {{ form_start(dual_form) }}
+        {{ form_widget(dual_form) }}
+        <button type="submit" class="btn btn-primary">
+            go !
+        </button>
+        {{ form_end(dual_form) }}
+    </div>
+
+    {% if meters is not null %}
+        <p>Distance in meters: {{ meters }} </p>
+    {% endif %}
+    {% if kilometers is not null %}
+        <p>Distance in kilometers: {{ kilometers }} </p>
+    {% endif %}
+
+{% endblock %}
