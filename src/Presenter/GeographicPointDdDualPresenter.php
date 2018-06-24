@@ -5,18 +5,13 @@ declare(strict_types=1);
 namespace App\Presenter;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Points\Validators as AssertPoints;
 
 class GeographicPointDdDualPresenter
 {
     /**
      * @Assert\NotBlank()
-     * @Assert\Type("numeric")
-     * @Assert\Range(
-     * min = 0,
-     * max = 90,
-     * minMessage = "Minimum is {{ limit }}",
-     * maxMessage = "Maximum is {{ limit }}"
-     * )
+     * @AssertPoints\LatitudeDd()
      */
     private $latitude1 = 0;
 
