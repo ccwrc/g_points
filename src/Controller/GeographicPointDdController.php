@@ -6,6 +6,8 @@ namespace App\Controller;
 
 use App\Form\GeographicPointDdDualType;
 use App\Points\GeographicPointDd;
+use App\Points\ValueObject\LatitudeDd;
+use App\Points\ValueObject\LongitudeDd;
 use App\Presenter\GeographicPointDdDualPresenter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -39,12 +41,12 @@ class GeographicPointDdController extends Controller
 
         if ($dual_form->isSubmitted() && $dual_form->isValid()) {
 
-            $latitude1 = $geographicPointDdDualPresenter->getLatitude1();
-            $longitude1 = $geographicPointDdDualPresenter->getLongitude1();
+            $latitude1 = new LatitudeDd($geographicPointDdDualPresenter->getLatitude1());
+            $longitude1 = new LongitudeDd($geographicPointDdDualPresenter->getLongitude1());
             $geographicPoint1 = new GeographicPointDd($latitude1, $longitude1);
 
-            $latitude2 = $geographicPointDdDualPresenter->getLatitude2();
-            $longitude2 = $geographicPointDdDualPresenter->getLongitude2();
+            $latitude2 = new LatitudeDd($geographicPointDdDualPresenter->getLatitude2());
+            $longitude2 = new LongitudeDd($geographicPointDdDualPresenter->getLongitude2());
             $geographicPoint2 = new GeographicPointDd($latitude2, $longitude2);
 
             $meters = $geographicPoint1->calculateDistanceInMeters($geographicPoint2);

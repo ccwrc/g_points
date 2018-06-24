@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Points;
 
+use App\Points\ValueObject\LatitudeDd;
+use App\Points\ValueObject\LongitudeDd;
 
 class GeographicPointDd
 {
@@ -11,8 +13,8 @@ class GeographicPointDd
     private $longitude;
 
     public function __construct(
-        float $latitude,
-        float $longitude
+        LatitudeDd $latitude,
+        LongitudeDd $longitude
     )
     {
         $this->latitude = $latitude;
@@ -21,9 +23,9 @@ class GeographicPointDd
 
     public function calculateDistanceInKilometers(self $strangerPoint): float
     {
-        $theta = $this->longitude - $strangerPoint->longitude;
-        $distance = \sin(\deg2rad($this->latitude)) * \sin(\deg2rad($strangerPoint->latitude)) +
-            \cos(\deg2rad($this->latitude)) * \cos(\deg2rad($strangerPoint->latitude)) * \cos(\deg2rad($theta));
+        $theta = $this->longitude->getValue() - $strangerPoint->longitude->getValue();
+        $distance = \sin(\deg2rad($this->latitude->getValue())) * \sin(\deg2rad($strangerPoint->latitude->getValue())) +
+            \cos(\deg2rad($this->latitude->getValue())) * \cos(\deg2rad($strangerPoint->latitude->getValue())) * \cos(\deg2rad($theta));
         $distance = \acos($distance);
         $distance = rad2deg($distance);
         $kilometers = $distance * 60 * 1.1515 * 1.609344;
@@ -35,5 +37,4 @@ class GeographicPointDd
     {
         return $this->calculateDistanceInKilometers($strangerPoint) * 1000;
     }
-
 }
