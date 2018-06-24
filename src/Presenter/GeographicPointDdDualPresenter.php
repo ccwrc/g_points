@@ -10,26 +10,54 @@ class GeographicPointDdDualPresenter
 {
     /**
      * @Assert\NotBlank()
+     * @Assert\Type("numeric")
+     * @Assert\Range(
+     * min = 0,
+     * max = 90,
+     * minMessage = "Minimum is {{ limit }}",
+     * maxMessage = "Maximum is {{ limit }}"
+     * )
      */
-    private $latitude1;
+    private $latitude1 = 0;
 
     /**
      * @Assert\NotBlank()
+     * @Assert\Type("numeric")
+     * @Assert\Range(
+     * min = 0,
+     * max = 180,
+     * minMessage = "Minimum is {{ limit }}",
+     * maxMessage = "Maximum is {{ limit }}"
+     * )
      */
-    private $longitude1;
+    private $longitude1 = 0;
 
     /**
      * @Assert\NotBlank()
+     * @Assert\Type("numeric")
+     * @Assert\Range(
+     * min = 0,
+     * max = 90,
+     * minMessage = "Minimum is {{ limit }}",
+     * maxMessage = "Maximum is {{ limit }}"
+     * )
      */
-    private $latitude2;
+    private $latitude2 = 0;
 
     /**
      * @Assert\NotBlank()
+     * @Assert\Type("numeric")
+     * @Assert\Range(
+     * min = 0,
+     * max = 180,
+     * minMessage = "Minimum is {{ limit }}",
+     * maxMessage = "Maximum is {{ limit }}"
+     * )
      */
-    private $longitude2;
+    private $longitude2 = 0;
 
     /**
-     * @return mixed
+     * @return int|float
      */
     public function getLatitude1()
     {
@@ -37,7 +65,7 @@ class GeographicPointDdDualPresenter
     }
 
     /**
-     * @param mixed $latitude1
+     * @param int|float $latitude1
      */
     public function setLatitude1($latitude1): void
     {
@@ -45,7 +73,7 @@ class GeographicPointDdDualPresenter
     }
 
     /**
-     * @return mixed
+     * @return int|float
      */
     public function getLongitude1()
     {
@@ -53,7 +81,7 @@ class GeographicPointDdDualPresenter
     }
 
     /**
-     * @param mixed $longitude1
+     * @param int|float $longitude1
      */
     public function setLongitude1($longitude1): void
     {
@@ -61,7 +89,7 @@ class GeographicPointDdDualPresenter
     }
 
     /**
-     * @return mixed
+     * @return int|float
      */
     public function getLatitude2()
     {
@@ -69,7 +97,7 @@ class GeographicPointDdDualPresenter
     }
 
     /**
-     * @param mixed $latitude2
+     * @param int|float $latitude2
      */
     public function setLatitude2($latitude2): void
     {
@@ -77,7 +105,7 @@ class GeographicPointDdDualPresenter
     }
 
     /**
-     * @return mixed
+     * @return int|float
      */
     public function getLongitude2()
     {
@@ -85,11 +113,10 @@ class GeographicPointDdDualPresenter
     }
 
     /**
-     * @param mixed $longitude2
+     * @param int|float $longitude2
      */
     public function setLongitude2($longitude2): void
     {
         $this->longitude2 = $longitude2;
     }
-
 }
