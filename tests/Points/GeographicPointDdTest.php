@@ -14,8 +14,8 @@ class GeographicPointDdTest extends TestCase
 {
     public function testCreate(): void
     {
-        $latitude = $this->createMock(LatitudeDd::class);
-        $longitude = $this->createMock(LongitudeDd::class);
+        $latitude = new LatitudeDd(44);
+        $longitude = new LongitudeDd(45);
 
         $geographicPointDd = new GeographicPointDd($latitude, $longitude);
         $this->assertInstanceOf(GeographicPointDd::class, $geographicPointDd);
@@ -33,5 +33,20 @@ class GeographicPointDdTest extends TestCase
         $this->assertEquals(0, $secondGeographicPointDd->calculateDistanceInMeters($firstGeographicPointDd));
         $this->assertEquals(0, $firstGeographicPointDd->calculateDistanceInKilometers($secondGeographicPointDd));
         $this->assertEquals(0, $secondGeographicPointDd->calculateDistanceInKilometers($firstGeographicPointDd));
+    }
+
+    public function testDistanceDifferentZero(): void
+    {
+        $latitude = new LatitudeDd(\mt_rand(45, 90));
+        $longitude = new LongitudeDd(\mt_rand(1, 180));
+        $latitudeSecond = new LatitudeDd(\mt_rand(1, 44));
+
+        $firstGeographicPointDd = new GeographicPointDd($latitude, $longitude);
+        $secondGeographicPointDd = new GeographicPointDd($latitudeSecond, $longitude);
+
+        $this->assertNotEquals(0, $firstGeographicPointDd->calculateDistanceInMeters($secondGeographicPointDd));
+        $this->assertNotEquals(0, $secondGeographicPointDd->calculateDistanceInMeters($firstGeographicPointDd));
+        $this->assertNotEquals(0, $firstGeographicPointDd->calculateDistanceInKilometers($secondGeographicPointDd));
+        $this->assertNotEquals(0, $secondGeographicPointDd->calculateDistanceInKilometers($firstGeographicPointDd));
     }
 }

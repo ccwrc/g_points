@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Points;
 
-use App\Points\ValueObject\LatitudeDd;
-use App\Points\ValueObject\LongitudeDd;
+use App\Points\ValueObject\{
+    LatitudeDd, LongitudeDd
+};
 
 class GeographicPointDd
 {

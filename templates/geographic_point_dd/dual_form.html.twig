@@ -5,23 +5,25 @@
 {% block body %}
     <h1>geo point dual form</h1>
 
-    <div class="form-group form-control">
+    <div class="form-group form-control col-md-8">
         <p>
-            Use the dot or comma for floating point numbers.
+        <h3>Use the dot or comma for floating point numbers.</h3>
         </p>
-        {{ form_start(dual_form) }}
-        {{ form_widget(dual_form) }}
+        {{ form_start(dualForm) }}
+        {{ form_widget(dualForm) }}
+
+        <br/>
         <button type="submit" class="btn btn-primary">
             go !
         </button>
-        {{ form_end(dual_form) }}
+        {{ form_end(dualForm) }}
     </div>
 
     {% if meters is not null %}
-        <p>Distance in meters: {{ meters }} </p>
+        <p class="border border-light rounded col-md-8">Distance in meters: {{ meters }} </p>
     {% endif %}
     {% if kilometers is not null %}
-        <p>Distance in kilometers: {{ kilometers }} </p>
+        <p class="border border-light rounded col-md-8">Distance in kilometers: {{ kilometers }} </p>
     {% endif %}
 
 {% endblock %}

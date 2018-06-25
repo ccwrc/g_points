@@ -17,16 +17,28 @@ class GeographicPointDdDualType extends AbstractType
     {
         $builder
             ->add('latitude1', NumberType::class, [
-                'label' => 'latitude point 1'
+                'label' => 'latitude point 1',
+                'attr' => [
+                    'class' => 'form-control col-md-6'
+                ]
             ])
             ->add('longitude1', NumberType::class, [
-                'label' => 'longitude point 1'
+                'label' => 'longitude point 1',
+                'attr' => [
+                    'class' => 'form-control col-md-6'
+                ]
             ])
             ->add('latitude2', NumberType::class, [
-                'label' => 'latitude point 2'
+                'label' => 'latitude point 2',
+                'attr' => [
+                    'class' => 'form-control col-md-6'
+                ]
             ])
             ->add('longitude2', NumberType::class, [
-                'label' => 'longitude point 2'
+                'label' => 'longitude point 2',
+                'attr' => [
+                    'class' => 'form-control col-md-6'
+                ]
             ]);
     }
 

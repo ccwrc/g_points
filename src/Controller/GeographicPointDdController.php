@@ -6,13 +6,15 @@ namespace App\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{
+    Request, Response
+};
 
 use App\Form\GeographicPointDdDualType;
 use App\Points\GeographicPointDd;
-use App\Points\ValueObject\LatitudeDd;
-use App\Points\ValueObject\LongitudeDd;
+use App\Points\ValueObject\{
+    LatitudeDd, LongitudeDd
+};
 use App\Presenter\GeographicPointDdDualPresenter;
 
 /**
@@ -37,10 +39,10 @@ class GeographicPointDdController extends Controller
         $kilometers = null;
 
         $geographicPointDdDualPresenter = new GeographicPointDdDualPresenter();
-        $dual_form = $this->createForm(GeographicPointDdDualType::class, $geographicPointDdDualPresenter);
-        $dual_form->handleRequest($request);
+        $dualForm = $this->createForm(GeographicPointDdDualType::class, $geographicPointDdDualPresenter);
+        $dualForm->handleRequest($request);
 
-        if ($dual_form->isSubmitted() && $dual_form->isValid()) {
+        if ($dualForm->isSubmitted() && $dualForm->isValid()) {
 
             $latitude1 = new LatitudeDd($geographicPointDdDualPresenter->getLatitude1());
             $longitude1 = new LongitudeDd($geographicPointDdDualPresenter->getLongitude1());
@@ -54,14 +56,14 @@ class GeographicPointDdController extends Controller
             $kilometers = $geographicPoint1->calculateDistanceInKilometers($geographicPoint2);
 
             return $this->render('geographic_point_dd/dual_form.html.twig', [
-                'dual_form' => $dual_form->createView(),
+                'dualForm' => $dualForm->createView(),
                 'meters' => $meters,
                 'kilometers' => $kilometers,
             ]);
         }
 
         return $this->render('geographic_point_dd/dual_form.html.twig', [
-            'dual_form' => $dual_form->createView(),
+            'dualForm' => $dualForm->createView(),
             'meters' => $meters,
             'kilometers' => $kilometers,
         ]);
