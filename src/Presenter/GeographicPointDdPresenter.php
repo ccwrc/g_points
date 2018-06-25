@@ -5,47 +5,50 @@ declare(strict_types=1);
 namespace App\Presenter;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use App\Points\Validators as AssertPoints;
 
 class GeographicPointDdPresenter
 {
     /**
      * @Assert\NotBlank()
+     * @AssertPoints\LatitudeDd()
      */
-    private $latitude;
+    private $latitude = 0;
 
     /**
      * @Assert\NotBlank()
+     * @AssertPoints\LongitudeDd()
      */
-    private $longitude;
+    private $longitude = 0;
 
     /**
-     * @return mixed
+     * @return int|float
      */
-    public function getLatitude()
+    public function getLatitude(): float
     {
         return $this->latitude;
     }
 
     /**
-     * @param mixed $latitude
+     * @param int|float $latitude
      */
-    public function setLatitude($latitude): void
+    public function setLatitude(float $latitude): void
     {
         $this->latitude = $latitude;
     }
 
     /**
-     * @return mixed
+     * @return int|float
      */
-    public function getLongitude()
+    public function getLongitude(): float
     {
         return $this->longitude;
     }
 
     /**
-     * @param mixed $longitude
+     * @param int|float $longitude
      */
-    public function setLongitude($longitude): void
+    public function setLongitude(float $longitude): void
     {
         $this->longitude = $longitude;
     }

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Points\ValueObject;
 
-class LatitudeDd
+final class LatitudeDd
 {
     private $value;
 

@@ -9,11 +9,11 @@ use Symfony\Component\Validator\Constraint;
 /**
  * @Annotation
  */
-final class LatitudeDd extends Constraint
+final class LongitudeDd extends Constraint
 {
     public function validatedBy(): string
     {
-        return LatitudeDdValidator::class;
+        return LongitudeDdValidator::class;
     }
 
     public function getTargets(): string
