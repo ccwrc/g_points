@@ -11,7 +11,7 @@ class LatitudeDdTest extends TestCase
 {
     public function testCorrectValues(): void
     {
-        $value = \mt_rand(0, 90);
+        $value = \mt_rand(-90, 90);
         $latitudeDd = new LatitudeDd($value);
 
         $this->assertInstanceOf(LatitudeDd::class, $latitudeDd);
@@ -19,7 +19,7 @@ class LatitudeDdTest extends TestCase
 
     public function testIncorrectSmallerValues(): void
     {
-        $valueSmaller = \mt_rand(-900, -1);
+        $valueSmaller = \mt_rand(-900, -91);
 
         $this->expectException(\InvalidArgumentException::class);
         new LatitudeDd($valueSmaller);
