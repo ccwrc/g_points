@@ -29,13 +29,7 @@ class GeographicPointDdDualPresenter
 
     /**
      * @Assert\NotBlank()
-     * @Assert\Type("numeric")
-     * @Assert\Range(
-     * min = 0,
-     * max = 90,
-     * minMessage = "Minimum is {{ limit }}",
-     * maxMessage = "Maximum is {{ limit }}"
-     * )
+     * @AssertPoints\LatitudeDd()
      */
     private $latitude2 = 0;
 

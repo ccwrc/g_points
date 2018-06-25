@@ -14,3 +14,8 @@
 .idea/
 notes.txt
 ###< my_files ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+/phpunit.xml
+###< symfony/phpunit-bridge ###
