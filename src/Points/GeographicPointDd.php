@@ -23,9 +23,15 @@ class GeographicPointDd
 
     public function calculateDistanceInKilometers(self $strangerPoint): float
     {
+        if ($this->latitude->getValue() === $strangerPoint->latitude->getValue() &&
+            $this->longitude->getValue() === $strangerPoint->longitude->getValue()) {
+            return 0;
+        }
+
         $theta = $this->longitude->getValue() - $strangerPoint->longitude->getValue();
         $distance = \sin(\deg2rad($this->latitude->getValue())) * \sin(\deg2rad($strangerPoint->latitude->getValue())) +
-            \cos(\deg2rad($this->latitude->getValue())) * \cos(\deg2rad($strangerPoint->latitude->getValue())) * \cos(\deg2rad($theta));
+            \cos(\deg2rad($this->latitude->getValue())) * \cos(\deg2rad($strangerPoint->latitude->getValue())) *
+            \cos(\deg2rad($theta));
         $distance = \acos($distance);
         $distance = rad2deg($distance);
         $kilometers = $distance * 60 * 1.1515 * 1.609344;
